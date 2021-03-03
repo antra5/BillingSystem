@@ -8,29 +8,32 @@
       </div>
       <div class='content-page'>
         <div class='form'>
-          <div class='input text row'>
-            <br/>
-            <br/>
-            <br/>
-            <label>Full Name<span>*</span>
-            </label>
-            <input name="name" type="text" maxlength="50" value="" id="name" v-model="name">
-            <br>
-            <label>Phone Number<span>*</span>
-            </label>
-            <input name="number" type="text" value="" id="number" v-model="number">
-            <br>
-            <label>E-mail Address<span>*</span>
-            </label>
-            <input name="email" type="text" maxlength="50" value="" id="email" v-model="email">
-            <br>
-            <label>Address<span>*</span>
-            </label>
-            <input name="address" type="text" maxlength="150" value="" id="address" v-model="address">
-            <br>
-            <label>Password<span>*</span>
-            </label>
-            <input type="password" minlength="6" value="" id="password" v-model="password">
+          <div class='input text'>
+            <div class='row'>
+            <div class='div-text'>Full Name
+            </div>
+            <input name="name" class='field' type="text" maxlength="50" value="" id="name" v-model="name">
+            </div>
+            <div class='row'>
+            <div class='div-text'>Phone Number
+            </div>
+            <input name="number" class='field' type="text" value="" id="number" v-model="number">
+            </div>
+            <div class='row'>
+            <div class='div-text'>E-mail Address
+            </div>
+            <input name="email" class='field' type="text" maxlength="50" value="" id="email" v-model="email">
+            </div>
+            <div class='row'>
+            <div class='div-text'>Address
+            </div>
+            <input name="address" class='field' type="text" maxlength="150" value="" id="address" v-model="address">
+            </div>
+            <div class='row'>
+            <div class='div-text'>Password
+            </div>
+            <input type="text" class='field' minlength="6" value="" id="password" v-model="password">
+          </div>
           </div>
       </div>
       <router-link to='/customer'>
@@ -104,7 +107,7 @@ export default {
 </script>
 
 <style>
-.input label span {
+.input div span {
     font-weight: 700;
     color: red;
     padding: 20px;
@@ -122,7 +125,7 @@ div {
   margin: 0;
   padding: 0;
 }
-input[type=text],number,password {
+/* input[type=text],number,password {
   width: 40%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -131,11 +134,15 @@ input[type=text],number,password {
   margin-top: 6px;
   margin-bottom: 16px;
   resize: vertical
+} */
+.field {
+  width: 18rem;
 }
 .input {
   border-radius: 5px;
   padding: 20px;
 }
+
 #errors{
     display: none;
     z-index: 3;
@@ -155,18 +162,25 @@ input[type=text],number,password {
     text-align: left;
     color: red;
   }
+  .div-text {
+        width: -webkit-fill-available;
+        padding-bottom: 10px;
+  }
 body {
   background-color: #99CDA9;
 }
+.content-page {
+  padding: 3.5rem;
+
+}
 button {
-  background-color:lightblue; /* Green */
+  background-color: darkgreen;
   border-radius: 2px;
   color: white;
   padding: 15px 32px;
   text-align: center;
   display: inline-block;
   font-size: 18px;
-  display: block;
   margin: auto;
 }
 form {
