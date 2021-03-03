@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { component } from 'vue/types/umd'
+import customerDetails from '@/views/customerDetails.vue'
+import homePage from '@/views/homePage.vue'
+import loginCustomer from '@/views/loginCustomer.vue'
+import orderDetails from '@/views/orderDetails.vue'
+import payment from '@/views/payment.vue'
+import register from '@/views/register.vue'
+import product from '@/views/product.vue'
 
 Vue.use(VueRouter)
 
@@ -11,14 +17,9 @@ const routes = [
     component: homePage
   },
   {
-    path: '/customer',
+    path: '/login',
     name: 'loginCustomer',
     component: loginCustomer
-  },
-  {
-    path: '/staff',
-    name: 'loginStaff',
-    component: loginStaff
   },
   {
     path: '/register',
@@ -31,9 +32,9 @@ const routes = [
     component: customerDetails
   },
   {
-    path: '/products/:userid',
-    name: 'products',
-    component: products
+    path: '/product/:userid',
+    name: 'product',
+    component: product
   },
   {
     path: '/payment/:userid',
@@ -44,8 +45,7 @@ const routes = [
     path: '/orderDetails/:userid',
     name: 'orderDetails',
     component: orderDetails
-  },
-
+  }
 ]
 
 const router = new VueRouter({

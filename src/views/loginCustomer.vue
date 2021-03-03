@@ -1,13 +1,18 @@
 <template>
   <div>
-    <navbar />
+    <br/>
+
+    <br/>
+
+    <br/>
+    <h1>Login Customer Page</h1>
   </div>
 </template>
 
 <script>
-import navbar from '../components/navbar.vue'
 export default {
-  components: { navbar },
+  components: {
+  },
   name: 'loginCustomer'
 }
 </script>

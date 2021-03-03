@@ -1,18 +1,175 @@
 <template>
-  <div>
-    <navbar />
+  <div class='layout'>
+    <div class='header'>
+    </div>
+    <div class='page-view'>
+      <div id='errors'>
+      <p class='error-content' id='show-errors'> </p>
+      </div>
+      <div class='content-page'>
+        <div class='form'>
+          <div class='input text row'>
+            <br/>
+            <br/>
+            <br/>
+            <label>Full Name<span>*</span>
+            </label>
+            <input name="name" type="text" maxlength="50" value="" id="name" v-model="name">
+            <br>
+            <label>Phone Number<span>*</span>
+            </label>
+            <input name="number" type="text" value="" id="number" v-model="number">
+            <br>
+            <label>E-mail Address<span>*</span>
+            </label>
+            <input name="email" type="text" maxlength="50" value="" id="email" v-model="email">
+            <br>
+            <label>Address<span>*</span>
+            </label>
+            <input name="address" type="text" maxlength="150" value="" id="address" v-model="address">
+            <br>
+            <label>Password<span>*</span>
+            </label>
+            <input type="password" minlength="6" value="" id="password" v-model="password">
+          </div>
+      </div>
+      <router-link to='/customer'>
+       <button type="submit" >
+        <span class="default-btn" v-on:click="submitDetails"> Create Account</span>
+       </button>
+      </router-link>
+    </div>
+  </div>
   </div>
 </template>
 
 <script>
-import navbar from '../components/navbar.vue'
+import axios from 'axios'
 export default {
-  components: { navbar },
-  name:'register'
-
+  name: 'register',
+  components: {
+  },
+  data () {
+    return {
+      name: '',
+      number: '',
+      email: '',
+      address: '',
+      password: ''
+    }
+  },
+  methods: {
+    validate: function () {
+      var message = ''
+      if (this.name === '') {
+        message = message + '- Name can\'t be Empty <br>'
+      }
+      if (this.email === '') {
+        message = message + '- Email can\'t be Empty <br>'
+      }
+      if (isNaN(this.number) || this.phoneNumber === '' || this.phoneNumber.length !== 10) {
+        message += '- Invalid Phone number, must be 10 digits <br>'
+      }
+      if (this.password === '' || (this.password.length < 6 || this.password.length > 10)) {
+        message += '- Invalid password, must be between 6 and 10 characters <br>'
+      }
+      this.message = message
+      if (this.message !== '') {
+        document.getElementById('errors').style.display = 'block'
+        document.getElementById('show-errors').innerHTML = message
+        return false
+      } else {
+        document.getElementById('errors').style.display = 'none'
+        return true
+      }
+    },
+    submitDetails: function () {
+      const user = {
+        name: this.name,
+        address: this.address,
+        phone: this.phone,
+        email: this.email,
+        password: this.password
+      }
+      if (this.validate) {
+        axios.post('http://localhost:5432/customers', user)
+          .then(response => {
+            console.log(response)
+          })
+      }
+    }
+  }
 }
+
 </script>
 
 <style>
+.input label span {
+    font-weight: 700;
+    color: red;
+    padding: 20px;
+    border:1px black;
+    align-content: space-between;
+}
+div {
+  flex: auto;
+  box-sizing: border-box;
+  display: block;
 
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+input[type=text],number,password {
+  width: 40%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical
+}
+.input {
+  border-radius: 5px;
+  padding: 20px;
+}
+#errors{
+    display: none;
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(99, 99, 99, 0.5);
+    position: fixed;
+    border: 1px solid white;
+  }
+
+  #errors > div {
+    padding: 20px;
+  }
+  .error-content{
+    margin: 20px;
+    margin-top: 50px;
+    text-align: left;
+    color: red;
+  }
+body {
+  background-color: #99CDA9;
+}
+button {
+  background-color:lightblue; /* Green */
+  border-radius: 2px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 18px;
+  display: block;
+  margin: auto;
+}
+form {
+  border: 1px black;
+}
 </style>
